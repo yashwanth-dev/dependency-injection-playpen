@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DI.Console\DI.Console.csproj" />
+  </ItemGroup>
+
 </Project>
