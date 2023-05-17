@@ -1,4 +1,6 @@
-﻿using DI.Console;
+﻿using System.Security.Claims;
+using System.Security.Principal;
+using DI.Console;
 using Microsoft.Extensions.Configuration;
 
 public class Program
@@ -7,7 +9,15 @@ public class Program
     {
         string message = "Hello DI!";
         IMessageWriter writer = GetMessageWriter();
-        var salutation = new Salutation(writer);
+        string authenticationType = "Custom";
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.Name, "John Doe"),
+            new(ClaimTypes.Email, "john.doe@example.com")
+        };
+        var identity = new ClaimsIdentity(claims, authenticationType);
+        IMessageWriter secureMessageWriter = new SecureMessageWriter(writer, identity);
+        var salutation = new Salutation(secureMessageWriter);
         salutation.Exclaim(message);
     }
 
