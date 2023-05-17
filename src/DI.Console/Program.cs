@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using System.Security.Principal;
 using DI.Console;
 using Microsoft.Extensions.Configuration;
 
