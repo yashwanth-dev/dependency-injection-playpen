@@ -1,7 +1,12 @@
-﻿public class Program
+﻿using DI.Console;
+
+public class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello DI!!");
+        string message = "Hello DI!";
+        IMessageWriter writer = new ConsoleWriter();
+        var salutation = new Salutation(writer);
+        salutation.Exclaim(message);
     }
 }
